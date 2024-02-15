@@ -11,7 +11,7 @@ public class Entity implements Serializable {
     private double x;
     private double y;
     private double rotation;
-            
+
 
     public String getID() {
         return ID.toString();

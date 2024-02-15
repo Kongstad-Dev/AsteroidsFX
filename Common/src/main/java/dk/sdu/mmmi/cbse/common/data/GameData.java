@@ -7,6 +7,7 @@ public class GameData {
     private final GameKeys keys = new GameKeys();
 
 
+
     public GameKeys getKeys() {
         return keys;
     }
@@ -26,6 +27,5 @@ public class GameData {
     public int getDisplayHeight() {
         return displayHeight;
     }
-
 
 }
