@@ -120,6 +120,15 @@ public class Main extends Application {
     }
 
     private void draw() {
+        for (Entity polygonEntity : polygons.keySet()) {
+            if(!world.getEntities().contains(polygonEntity)){
+                Polygon removedPolygon = polygons.get(polygonEntity);
+                polygons.remove(polygonEntity);
+                gameWindow.getChildren().remove(removedPolygon);
+            }
+        }
+
+
         for (Entity entity : world.getEntities()) {
             Polygon polygon = polygons.get(entity);
             if (polygon == null) {
