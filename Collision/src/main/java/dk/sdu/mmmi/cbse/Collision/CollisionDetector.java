@@ -5,13 +5,21 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 
+import java.awt.*;
+
 public class CollisionDetector implements IPostEntityProcessingService {
+
+    private Quadtree quadtree;
 
     public CollisionDetector() {
     }
 
     @Override
     public void process(GameData gameData, World world) {
+
+
+
+
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
@@ -19,12 +27,16 @@ public class CollisionDetector implements IPostEntityProcessingService {
                 // if the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID())) {
                     continue;
+
                 }
 
                 // CollisionDetection
                 if (this.collides(entity1, entity2)) {
+                    System.out.println("Hit!");
                     world.removeEntity(entity1);
+                    System.out.println(entity1);
                     world.removeEntity(entity2);
+                    System.out.println(entity2);
                 }
             }
         }

@@ -91,6 +91,8 @@
     </build>
 
     <profiles>
+
+
         <profile>
             <!-- parent project should delete 'mods-mvn' -->
             <id>parent-project</id>
@@ -156,4 +158,5 @@
             </build>
         </profile>
     </profiles>
+
 </project>

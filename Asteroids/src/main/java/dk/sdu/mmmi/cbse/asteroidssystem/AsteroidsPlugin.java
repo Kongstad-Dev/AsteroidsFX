@@ -11,22 +11,24 @@ import java.util.Random;
 public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingService {
 
     private Entity asteroids;
-
     public AsteroidsPlugin()
-    {
-
-    }
-
-
-
+    {}
 
     @Override
     public void start(GameData gameData, World world) {
 
         asteroids = createAsteroids(gameData);
         world.addEntity(asteroids);
-
     }
+
+    @Override
+    public void stop(GameData gameData, World world) {
+
+        for (Entity asteroid : world.getEntities(Asteroids.class)) {
+            world.removeEntity(asteroid);
+        }
+    }
+
     private Entity createAsteroids(GameData gameData)
     {
         Entity Asteroids = new Asteroids();
@@ -62,6 +64,7 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
        Asteroids.setY(RandSpawnY);
 
 
+
         return Asteroids;
     }
 
@@ -82,32 +85,19 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
             asteroids.setX(asteroids.getX() + changeX);
             asteroids.setY(asteroids.getY() + changeY);
 
-            if (asteroids.getY() > gameData.getDisplayHeight() || asteroids.getY() < 0)
+            if (asteroids.getY() > gameData.getDisplayHeight() || asteroids.getY() <= 0)
             {
                 world.removeEntity(asteroids);
-                System.out.println("DEAD");
+
             }
-            if (asteroids.getX() > gameData.getDisplayWidth() || asteroids.getX() < 0)
+            if (asteroids.getX() > gameData.getDisplayWidth() || asteroids.getX() <= 0)
             {
                 world.removeEntity(asteroids);
-                System.out.println("DEAD2");
+
             }
-
-
-
-
-
         }
-
-
     }
 
-    @Override
-    public void stop(GameData gameData, World world) {
-
-        world.removeEntity(asteroids);
-
-    }
 
     public int countAsteroids(World world) {
         int asteroidCount = 0;
