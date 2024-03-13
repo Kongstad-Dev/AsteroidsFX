@@ -15,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -131,6 +132,12 @@ class Game {
                     polygons.remove(polygonEntity);
                     gameWindow.getChildren().remove(removedPolygon);
                 }
+                Rectangle hitbox = new Rectangle(polygonEntity.getX(), polygonEntity.getY(), polygonEntity.getWidth(), polygonEntity.getHeight());
+                hitbox.setStroke(Color.RED); // Set hitbox color
+                hitbox.setFill(Color.TRANSPARENT); // Make the inside of the hitbox transparent
+                gameWindow.getChildren().add(hitbox);
+
+
             }
 
 

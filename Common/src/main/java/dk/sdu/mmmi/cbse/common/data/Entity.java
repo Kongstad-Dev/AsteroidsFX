@@ -13,6 +13,10 @@ public class Entity implements Serializable {
     private double rotation;
     private float radius;
 
+    private double width;
+
+    private double height;
+
     public String getID() {
         return ID.toString();
     }
@@ -52,12 +56,18 @@ public class Entity implements Serializable {
         return rotation;
     }
 
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
+    public void setRadius(float radius) {this.radius = radius;}
 
 
     public float getRadius() {
         return this.radius;
     }
+
+    public double getWidth() {return this.width;}
+
+    public void setWidth(double width) {this.width = width;}
+
+    public double getHeight() {return height;}
+
+    public void setHeight(double height) {this.height = height;}
 }
