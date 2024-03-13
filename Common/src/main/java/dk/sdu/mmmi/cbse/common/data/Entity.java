@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.cbse.common.data;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class Entity implements Serializable {
@@ -63,7 +64,11 @@ public class Entity implements Serializable {
         return this.radius;
     }
 
-    public double getWidth() {return this.width;}
+    public double getWidth() {
+        double[] coordinates = polygonCoordinates;
+        double max = Arrays.stream(coordinates).max().orElse(-1);
+        return max*2;
+    }
 
     public void setWidth(double width) {this.width = width;}
 
