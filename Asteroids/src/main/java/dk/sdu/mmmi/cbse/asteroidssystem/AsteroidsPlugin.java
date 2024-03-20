@@ -12,13 +12,7 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
 
     private Entity asteroids;
 
-    public AsteroidsPlugin()
-    {
-
-    }
-
-
-
+    public AsteroidsPlugin() {}
 
     @Override
     public void start(GameData gameData, World world) {
@@ -69,7 +63,6 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
     public void process(GameData gameData, World world) {
         for (Entity asteroids : world.getEntities(Asteroids.class))
         {
-
             int currentAsteroids = countAsteroids(world);
             int asteroidsNeeded = 4 - currentAsteroids;
             for (int i = 0; i < asteroidsNeeded; i++)
@@ -85,21 +78,14 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
             if (asteroids.getY() > gameData.getDisplayHeight() || asteroids.getY() < 0)
             {
                 world.removeEntity(asteroids);
-                System.out.println("DEAD");
+
             }
             if (asteroids.getX() > gameData.getDisplayWidth() || asteroids.getX() < 0)
             {
                 world.removeEntity(asteroids);
-                System.out.println("DEAD2");
+
             }
-
-
-
-
-
         }
-
-
     }
 
     @Override

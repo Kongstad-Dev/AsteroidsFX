@@ -64,6 +64,7 @@ public class Entity implements Serializable {
         return this.radius;
     }
 
+
     public double getWidth() {
         double[] coordinates = polygonCoordinates;
         double max = Arrays.stream(coordinates).max().orElse(-1);
@@ -72,7 +73,12 @@ public class Entity implements Serializable {
 
     public void setWidth(double width) {this.width = width;}
 
-    public double getHeight() {return height;}
+    public double getHeight() {
+        double[] coordinatesY = polygonCoordinates;
+        double maxY = Arrays.stream(coordinatesY).max().orElse(-1);
+        return maxY*2;
+
+    }
 
     public void setHeight(double height) {this.height = height;}
 }
