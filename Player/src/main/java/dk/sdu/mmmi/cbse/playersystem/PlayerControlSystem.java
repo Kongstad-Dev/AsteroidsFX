@@ -21,10 +21,10 @@ public class PlayerControlSystem implements IEntityProcessingService {
             
         for (Entity player : world.getEntities(Player.class)) {
             if (gameData.getKeys().isDown(GameKeys.A)) {
-                player.setRotation(player.getRotation() - 5);                
+                player.setRotation(player.getRotation() - 3);
             }
             if (gameData.getKeys().isDown(GameKeys.D)) {
-                player.setRotation(player.getRotation() + 5);                
+                player.setRotation(player.getRotation() + 3);
             }
             if (gameData.getKeys().isDown(GameKeys.W)) {
                 double changeX = Math.cos(Math.toRadians(player.getRotation()));
