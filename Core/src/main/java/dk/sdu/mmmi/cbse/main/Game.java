@@ -177,7 +177,6 @@ class Game {
                     gameWindow.getChildren().remove(removedPolygon);
                 }
                 updateHitboxes();
-
             }
 
 
