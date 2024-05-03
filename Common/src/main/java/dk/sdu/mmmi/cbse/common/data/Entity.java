@@ -18,6 +18,7 @@ public class Entity implements Serializable {
 
     private double height;
 
+
     public String getID() {
         return ID.toString();
     }
@@ -81,4 +82,6 @@ public class Entity implements Serializable {
     }
 
     public void setHeight(double height) {this.height = height;}
+
+
 }

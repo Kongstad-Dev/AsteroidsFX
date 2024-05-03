@@ -65,8 +65,11 @@ class Game {
                 if (event.getCode().equals(KeyCode.W)) {
                     gameData.getKeys().setKey(GameKeys.W, true);
                 }
+                if (event.getCode().equals(KeyCode.Z)) {
+                    gameData.getKeys().setKey(GameKeys.Z, true);
+                }
                 if (event.getCode().equals(KeyCode.SPACE)) {
-                    gameData.getKeys().setKey(GameKeys.SPACE, true);
+                        gameData.getKeys().setKey(GameKeys.SPACE, true);
                 }
             });
             scene.setOnKeyReleased(event -> {
@@ -81,6 +84,9 @@ class Game {
                 }
                 if (event.getCode().equals(KeyCode.SPACE)) {
                     gameData.getKeys().setKey(GameKeys.SPACE, false);
+                }
+                if (event.getCode().equals(KeyCode.Z)) {
+                    gameData.getKeys().setKey(GameKeys.Z, false);
                 }
 
             });
@@ -139,6 +145,13 @@ class Game {
                 iterator.remove(); // It's important to use iterator.remove() to avoid ConcurrentModificationException
             }
         }
+
+        // Toggle hitboxes visibility
+        if (gameData.getKeys().isPressed(GameKeys.Z)) {
+            for (Rectangle hitbox : hitboxes.values()) {
+                hitbox.setVisible(!hitbox.isVisible());
+            }
+        }
     }
 
         public void render() {
@@ -166,6 +179,7 @@ class Game {
             for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
                 postEntityProcessorService.process(gameData, world);
             }
+
         }
 
         private void draw() {
