@@ -71,18 +71,25 @@ public class Entity implements Serializable {
 
 
     public double getWidth() {
-        double[] coordinates = polygonCoordinates;
-        double max = Arrays.stream(coordinates).max().orElse(-1);
-        return max*2;
+        double[] xCoordinates = new double[polygonCoordinates.length / 2];
+        for (int i = 0; i < polygonCoordinates.length; i += 2) {
+            xCoordinates[i / 2] = polygonCoordinates[i];
+        }
+        double minX = Arrays.stream(xCoordinates).min().orElse(-1);
+        double maxX = Arrays.stream(xCoordinates).max().orElse(-1);
+        return maxX - minX;
     }
 
     public void setWidth(double width) {this.width = width;}
 
     public double getHeight() {
-        double[] coordinatesY = polygonCoordinates;
-        double maxY = Arrays.stream(coordinatesY).max().orElse(-1);
-        return maxY*2;
-
+        double[] yCoordinates = new double[polygonCoordinates.length / 2];
+        for (int i = 1; i < polygonCoordinates.length; i += 2) {
+            yCoordinates[i / 2] = polygonCoordinates[i];
+        }
+        double minY = Arrays.stream(yCoordinates).min().orElse(-1);
+        double maxY = Arrays.stream(yCoordinates).max().orElse(-1);
+        return maxY - minY;
     }
 
     public void setHeight(double height) {this.height = height;}
