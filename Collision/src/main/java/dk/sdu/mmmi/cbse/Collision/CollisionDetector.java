@@ -15,16 +15,20 @@ public class CollisionDetector implements IPostEntityProcessingService {
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
+                if (collides(entity1, entity2) && entity1.getClass() != entity2.getClass()) {
+                    // If the entities are colliding, reduce their HP by their respective damage
+                        entity1.setHP(entity1.getHP() - entity1.getDmg());
+                        entity2.setHP(entity2.getHP() - entity2.getDmg());
 
-                // if the two entities are identical, skip the iteration
-                if (entity1.getID().equals(entity2.getID()))
-                        {continue;}
 
-                // CollisionDetection
-                if (this.collides(entity1, entity2) && !(entity1 instanceof Player) && !(entity2 instanceof Player)) {
-                    world.removeEntity(entity1);
-                    world.removeEntity(entity2);
-                    System.out.println("Hit!");
+
+                    if (entity1.getHP() < 1) {
+                        world.removeEntity(entity1);
+                    }
+                    if (entity2.getHP() < 1) {
+                        world.removeEntity(entity2);
+                    }
+
                 }
             }
         }

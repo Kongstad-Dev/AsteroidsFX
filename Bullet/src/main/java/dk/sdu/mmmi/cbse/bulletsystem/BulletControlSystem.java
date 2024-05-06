@@ -40,10 +40,12 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
         // Adjust the starting position based on the shooter's rotation
         double shooterFrontX = shooter.getX() + Math.cos(Math.toRadians(shooter.getRotation())) * shooter.getRadius();
         double shooterFrontY = shooter.getY() + Math.sin(Math.toRadians(shooter.getRotation()))* shooter.getRadius();
-        bullet.setX(shooterFrontX);
-        bullet.setY(shooterFrontY);
+        bullet.setX(shooterFrontX + 10 );
+        bullet.setY(shooterFrontY + 10);
         bullet.setRotation(shooter.getRotation());
-        bullet.setRadius(1);
+
+        bullet.setDmg(1);
+        bullet.setHP(1);
 
         return bullet;
     }

@@ -8,11 +8,10 @@ import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
 import java.util.Random;
 
-public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingService {
+public class AsteroidsPlugin implements IGamePluginService {
 
     private Entity asteroids;
 
-    public AsteroidsPlugin() {}
 
     @Override
     public void start(GameData gameData, World world) {
@@ -59,34 +58,6 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
         return Asteroids;
     }
 
-    @Override
-    public void process(GameData gameData, World world) {
-        for (Entity asteroids : world.getEntities(Asteroids.class))
-        {
-            int currentAsteroids = countAsteroids(world);
-            int asteroidsNeeded = 4 - currentAsteroids;
-            for (int i = 0; i < asteroidsNeeded; i++)
-            {
-                Entity NewAsteroids = createAsteroids(gameData);
-                world.addEntity(NewAsteroids);
-            }
-            double changeX = Math.cos(Math.toRadians(asteroids.getRotation()));
-            double changeY = Math.sin(Math.toRadians(asteroids.getRotation()));
-            asteroids.setX(asteroids.getX() + changeX);
-            asteroids.setY(asteroids.getY() + changeY);
-
-            if (asteroids.getY() > gameData.getDisplayHeight() || asteroids.getY() < 0)
-            {
-                world.removeEntity(asteroids);
-
-            }
-            if (asteroids.getX() > gameData.getDisplayWidth() || asteroids.getX() < 0)
-            {
-                world.removeEntity(asteroids);
-
-            }
-        }
-    }
 
     @Override
     public void stop(GameData gameData, World world) {
@@ -95,13 +66,5 @@ public class AsteroidsPlugin implements IGamePluginService, IEntityProcessingSer
 
     }
 
-    public int countAsteroids(World world) {
-        int asteroidCount = 0;
-        for (Entity entity : world.getEntities()) {
-            if (entity instanceof Asteroids) { // Assuming there's an Asteroid class
-                asteroidCount++;
-            }
-        }
-        return asteroidCount;
-    }
+
 }
