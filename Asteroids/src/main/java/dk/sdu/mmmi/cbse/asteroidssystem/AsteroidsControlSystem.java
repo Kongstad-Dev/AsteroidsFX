@@ -24,6 +24,9 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
             asteroid.setX(asteroid.getX() + changeX * 0.5);
             asteroid.setY(asteroid.getY() + changeY * 0.5);
 
+
+            if (asteroid.getY() > gameData.getDisplayHeight() || asteroid.getY() < 0) {world.removeEntity(asteroid);}
+            if (asteroid.getX() > gameData.getDisplayWidth() || asteroid.getX() < 0) {world.removeEntity(asteroid);}
         }
 
         if (randomInt==1){
@@ -32,6 +35,9 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
             createAsteroidsLarge(gameData, world);
 //            world.addEntity(asteroid);
         }
+
+
+
     }
 
     public void createAsteroidsLarge(GameData gameData, World world)
@@ -51,7 +57,7 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
         // Generate a spawn location for the asteroid
         float spawnX;
         float spawnY;
-        double safeDistance = 10;
+        double safeDistance = 100;
         do {
             spawnX = rand.nextInt(gameData.getDisplayWidth());
             spawnY = rand.nextInt(gameData.getDisplayHeight());
@@ -126,7 +132,6 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
         asteroids.setX(asteroids.getX());
         asteroids.setY(asteroids.getY());
         asteroids.setRotation(asteroid.getRotation()+rotation);
-
         world.addEntity(asteroids);
     }
 }
