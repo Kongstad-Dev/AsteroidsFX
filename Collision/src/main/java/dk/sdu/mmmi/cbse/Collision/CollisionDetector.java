@@ -17,8 +17,18 @@ public class CollisionDetector implements IPostEntityProcessingService {
             for (Entity entity2 : world.getEntities()) {
                 if (collides(entity1, entity2) && entity1.getClass() != entity2.getClass()) {
                     // If the entities are colliding, reduce their HP by their respective damage
-                        entity1.setHP(entity1.getHP() - entity1.getDmg());
-                        entity2.setHP(entity2.getHP() - entity2.getDmg());
+                        entity1.setHP(entity1.getHP() - entity2.getDmg());
+                        entity2.setHP(entity2.getHP() - entity1.getDmg());
+                    System.out.println("Entity 1 is:" + entity1.getClass());
+                    System.out.println("Entity 2 is:" +entity2.getClass());
+                    System.out.println("Asteroids : " + entity1.getWidth() + " Bullet : " + entity2.getWidth());
+
+                    System.out.println("Entity 1 - dmg: " + entity1.getDmg());
+                    System.out.println("Entity 1 - hp: " +entity1.getHP());
+
+
+                    System.out.println("Entity 2 - dmg: " +entity2.getDmg());
+                    System.out.println("Entity 2 - hp: " +entity2.getHP());
 
 
 

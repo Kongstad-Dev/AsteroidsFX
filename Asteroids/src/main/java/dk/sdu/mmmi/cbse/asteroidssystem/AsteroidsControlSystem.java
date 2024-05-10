@@ -31,6 +31,21 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
 
             if (asteroid.getY() > gameData.getDisplayHeight() || asteroid.getY() < 0) {world.removeEntity(asteroid);}
             if (asteroid.getX() > gameData.getDisplayWidth() || asteroid.getX() < 0) {world.removeEntity(asteroid);}
+
+
+            if (asteroid.getHP() == 5)
+            {
+                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
+                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
+                world.removeEntity(asteroid);
+            }
+
+            if (asteroid.getHP() == 2)
+            {
+                createAsteroid(gameData, world, AsteroidSize.SMALL);
+                createAsteroid(gameData, world, AsteroidSize.SMALL);
+                world.removeEntity(asteroid);
+            }
         }
 
         if (randomInt==1 && asteroidsCount < maxAsteroids) {
@@ -73,6 +88,7 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
         } while (Math.sqrt(Math.pow(spawnX - playerX, 2) + Math.pow(spawnY - playerY, 2)) < safeDistance);
 
         Entity asteroid = new Asteroids();
+        asteroid.setHP(10);
         double[] coordinates;
 
         switch (size) {

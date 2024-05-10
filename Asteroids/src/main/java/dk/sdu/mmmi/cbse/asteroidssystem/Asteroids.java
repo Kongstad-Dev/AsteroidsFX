@@ -14,7 +14,7 @@ public class Asteroids extends Entity{
             asteroid.setX(entity.getX());
             asteroid.setY(entity.getY());
             asteroid.setRotation(entity.getRotation() + r.nextInt(360));
-            //asteriod.setHP(5);
+            asteroid.setHP(10);
 
 
             switch (size){
