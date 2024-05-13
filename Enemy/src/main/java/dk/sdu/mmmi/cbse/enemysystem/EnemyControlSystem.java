@@ -1,9 +1,8 @@
-package dk.sdu.mmmi.cbse.enemysystem.EnemyPlugin;
+package dk.sdu.mmmi.cbse.enemysystem;
 
 import dk.sdu.mmmi.cbse.common.bullet.BulletSPI;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
-import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
@@ -73,9 +72,15 @@ public class EnemyControlSystem implements IEntityProcessingService {
                 enemy.setRotation(enemy.getRotation()+180);
             }
 
-
+            if (world.getEntities(Enemy.class).size() <= 2)
+            {
+                createEnemyShip(gameData, world);
+            }
+            else {
+                System.out.println("Enemy ship already exists");
+            }
         }
-        createEnemyShip(gameData, world);
+
     }
 
     private void createEnemyShip(GameData gameData, World world) {

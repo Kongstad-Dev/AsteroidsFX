@@ -4,7 +4,6 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.playersystem.Player;
 
 import java.util.Random;
 
@@ -67,25 +66,7 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
     public void createAsteroid(GameData gameData, World world, AsteroidSize size) {
         Random rand = new Random();
 
-        // Get player's position
-        float playerX = 0;
-        float playerY = 0;
-        for (Entity entity : world.getEntities()) {
-            if (entity instanceof Player) {
-                playerX = (float) entity.getX();
-                playerY = (float) entity.getY();
-                break;
-            }
-        }
 
-        // Generate a spawn location for the asteroid
-        float spawnX;
-        float spawnY;
-        double safeDistance = 100;
-        do {
-            spawnX = rand.nextInt(gameData.getDisplayWidth());
-            spawnY = rand.nextInt(gameData.getDisplayHeight());
-        } while (Math.sqrt(Math.pow(spawnX - playerX, 2) + Math.pow(spawnY - playerY, 2)) < safeDistance);
 
         Entity asteroid = new Asteroids();
         asteroid.setHP(10);
@@ -151,8 +132,6 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
         }
 
         asteroid.setPolygonCoordinates(coordinates);
-        asteroid.setX(spawnX);
-        asteroid.setY(spawnY);
         asteroid.setRotation(rand.nextDouble() * 360);
 
         world.addEntity(asteroid);
