@@ -10,75 +10,78 @@ import java.util.Random;
 
 public class EnemyPlugin  implements IGamePluginService {
 
-    public int corner;
+//    public int corner;
 
-        private Entity enemy;
+    private Entity enemy;
 
-        public EnemyPlugin() {
-        }
+    public EnemyPlugin() {
+    }
 
-        @Override
-        public void start(GameData gameData, World world) {
+    @Override
+    public void start(GameData gameData, World world) {
 
-            // Add entities to the world
+        // Add entities to the world
 
-                enemy = createEnemyShip(gameData);
-                world.addEntity(enemy);
+        enemy = createEnemyShip(gameData);
+        world.addEntity(enemy);
 
 
 
-        }
+    }
 
-        private Entity createEnemyShip(GameData gameData) {
-            Random Rand = new Random();
-            int buffer = 100;
-            Entity enemyShip = new Enemy();
-            enemyShip.setPolygonCoordinates(
-                    6.0, -3.0, -6.0, -3.0,
-                    -6.0, -3.0, -15.0, 3.0,
-                    -15.0, 3.0, 15.0, 3.0,
-                    15.0, 3.0, 6.0, 9.0,
-                    6.0, 9.0, -6.0, 9.0,
-                    -6.0, 9.0, -15.0, 3.0,
-                    -15.0, 3.0, -6.0, -3.0,
-                    -6.0, -3.0, -3.0, -9.0,
-                    -3.0, -9.0, 3.0, -9.0,
-                    3.0, -9.0, 6.0, -3.0,
-                    6.0, -3.0, 15.0, 3.0
+    private Entity createEnemyShip(GameData gameData) {
+//        Random Rand = new Random();
+//        int buffer = 100;
+        Entity enemyShip = new Enemy();
+        enemyShip.setPolygonCoordinates(
+                6.0, -3.0, -6.0, -3.0,
+                -6.0, -3.0, -15.0, 3.0,
+                -15.0, 3.0, 15.0, 3.0,
+                15.0, 3.0, 6.0, 9.0,
+                6.0, 9.0, -6.0, 9.0,
+                -6.0, 9.0, -15.0, 3.0,
+                -15.0, 3.0, -6.0, -3.0,
+                -6.0, -3.0, -3.0, -9.0,
+                -3.0, -9.0, 3.0, -9.0,
+                3.0, -9.0, 6.0, -3.0,
+                6.0, -3.0, 15.0, 3.0
 
-            );
-            float screenWidth = gameData.getDisplayWidth();
-            float screenHeight = gameData.getDisplayHeight();
+        );
 
-            corner = Rand.nextInt(4);
+        enemyShip.setX(gameData.getDisplayHeight()/2+200);
+        enemyShip.setY(gameData.getDisplayWidth()/2+200);
+//        float screenWidth = gameData.getDisplayWidth();
+//        float screenHeight = gameData.getDisplayHeight();
 
-            switch (corner)  {
-            case 0: // top-left
-                enemyShip.setX(buffer );
-            enemyShip.setY(buffer);
-            break;
-            case 1: // top-right
-            enemyShip.setX(screenWidth - buffer );
-            enemyShip.setY(buffer);
-            break;
-            case 2: // bottom-left
-            enemyShip.setX(buffer );
-            enemyShip.setY(screenHeight - buffer); // Adjust so it doesn't spawn on the edge
-            break;
-            case 3: // bottom-right
-            enemyShip.setX(screenWidth - buffer);
-            enemyShip.setY(screenHeight - buffer);
-            break;
-        }
+//        corner = Rand.nextInt(4);
 
-            return enemyShip;
-        }
+//        switch (corner) {
+//            case 0 -> { // top-left
+//                enemyShip.setX(buffer);
+//                enemyShip.setY(buffer);
+//            }
+//            case 1 -> { // top-right
+//                enemyShip.setX(screenWidth - buffer);
+//                enemyShip.setY(buffer);
+//            }
+//            case 2 -> { // bottom-left
+//                enemyShip.setX(buffer);
+//                enemyShip.setY(screenHeight - buffer); // Adjust so it doesn't spawn on the edge
+//            }
+//            case 3 -> { // bottom-right
+//                enemyShip.setX(screenWidth - buffer);
+//                enemyShip.setY(screenHeight - buffer);
+//            }
+//        }
 
-        @Override
-        public void stop(GameData gameData, World world) {
-            // Remove entities
-            world.removeEntity(enemy);
-        }
+        return enemyShip;
+    }
+
+    @Override
+    public void stop(GameData gameData, World world) {
+        // Remove entities
+        world.removeEntity(enemy);
+    }
 
 
 }

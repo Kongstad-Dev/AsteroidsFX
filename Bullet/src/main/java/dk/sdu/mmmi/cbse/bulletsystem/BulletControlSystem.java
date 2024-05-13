@@ -28,7 +28,6 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
             {
                 world.removeEntity(bullet);
             }
-
         }
     }
 
