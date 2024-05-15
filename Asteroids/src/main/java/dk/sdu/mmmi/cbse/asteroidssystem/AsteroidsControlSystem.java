@@ -18,40 +18,40 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
 
 
 
-//        // Chance to spawn 1
-//        int randomInt = random.nextInt(50);
-//
-//        for (Entity asteroid : world.getEntities(Asteroids.class)) {
-//            double changeX = Math.cos(Math.toRadians(asteroid.getRotation()));
-//            double changeY = Math.sin(Math.toRadians(asteroid.getRotation()));
-//            asteroid.setX(asteroid.getX() + changeX * 0.5);
-//            asteroid.setY(asteroid.getY() + changeY * 0.5);
-//
-//
-//            if (asteroid.getY() > gameData.getDisplayHeight() || asteroid.getY() < 0) {world.removeEntity(asteroid);}
-//            if (asteroid.getX() > gameData.getDisplayWidth() || asteroid.getX() < 0) {world.removeEntity(asteroid);}
-//
-//
-//            if (asteroid.getHP() == 5)
-//            {
-//                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
-//                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
-//                world.removeEntity(asteroid);
-//            }
-//
-//            if (asteroid.getHP() == 2)
-//            {
-//                createAsteroid(gameData, world, AsteroidSize.SMALL);
-//                createAsteroid(gameData, world, AsteroidSize.SMALL);
-//                world.removeEntity(asteroid);
-//            }
-//        }
-//
-//        if (randomInt==1 && asteroidsCount < maxAsteroids) {
-//            // Add entities to the world
-//            createAsteroid(gameData, world, AsteroidSize.LARGE);
-//            asteroidsCount++;
-//        }
+        // Chance to spawn 1
+        int randomInt = random.nextInt(50);
+
+        for (Entity asteroid : world.getEntities(Asteroids.class)) {
+            double changeX = Math.cos(Math.toRadians(asteroid.getRotation()));
+            double changeY = Math.sin(Math.toRadians(asteroid.getRotation()));
+            asteroid.setX(asteroid.getX() + changeX * 0.5);
+            asteroid.setY(asteroid.getY() + changeY * 0.5);
+
+
+            if (asteroid.getY() > gameData.getDisplayHeight() || asteroid.getY() < 0) {world.removeEntity(asteroid);}
+            if (asteroid.getX() > gameData.getDisplayWidth() || asteroid.getX() < 0) {world.removeEntity(asteroid);}
+
+
+            if (asteroid.getHP() == 5)
+            {
+                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
+                createAsteroid(gameData, world, AsteroidSize.MEDIUM);
+                world.removeEntity(asteroid);
+            }
+
+            if (asteroid.getHP() == 2)
+            {
+                createAsteroid(gameData, world, AsteroidSize.SMALL);
+                createAsteroid(gameData, world, AsteroidSize.SMALL);
+                world.removeEntity(asteroid);
+            }
+        }
+
+        if (randomInt==1 && asteroidsCount < maxAsteroids) {
+            // Add entities to the world
+            createAsteroid(gameData, world, AsteroidSize.LARGE);
+            asteroidsCount++;
+        }
 
 
 
