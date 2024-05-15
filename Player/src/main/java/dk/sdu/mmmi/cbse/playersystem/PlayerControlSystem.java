@@ -16,6 +16,8 @@ import static java.util.stream.Collectors.toList;
 
 public class PlayerControlSystem implements IEntityProcessingService {
 
+    private boolean spacePressedLastFrame = false;
+
     @Override
     public void process(GameData gameData, World world) {
             
@@ -32,13 +34,18 @@ public class PlayerControlSystem implements IEntityProcessingService {
                 player.setX(player.getX() + changeX);
                 player.setY(player.getY() + changeY);
             }
-            if(gameData.getKeys().isDown(GameKeys.SPACE)) {                
+
+            boolean spaceCurrentlyPressed = gameData.getKeys().isDown(GameKeys.SPACE);
+            if (spaceCurrentlyPressed && !spacePressedLastFrame) {
                 getBulletSPIs().stream().findFirst().ifPresent(
-                        spi -> {world.addEntity(spi.createBullet(player, gameData));}
+                        spi -> world.addEntity(spi.createBullet(player, gameData))
                 );
             }
-            
-        if (player.getX() < 0) {
+            // Update the spacePressedLastFrame at the end of processing
+            spacePressedLastFrame = spaceCurrentlyPressed;
+
+
+            if (player.getX() < 0) {
             player.setX(1);
         }
 

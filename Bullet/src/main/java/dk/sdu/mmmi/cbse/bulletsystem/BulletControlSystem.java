@@ -37,10 +37,14 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
         Entity bullet = new Bullet();
         bullet.setPolygonCoordinates(1, -1, 1, 1, -1, 1, -1, -1);
         // Adjust the starting position based on the shooter's rotation
-        double shooterFrontX = shooter.getX() + Math.cos(Math.toRadians(shooter.getRotation())) * shooter.getRadius();
-        double shooterFrontY = shooter.getY() + Math.sin(Math.toRadians(shooter.getRotation()))* shooter.getRadius();
-        bullet.setX(shooterFrontX + 10 );
-        bullet.setY(shooterFrontY + 10);
+//        double shooterFrontX = shooter.getX() + Math.cos(Math.toRadians(shooter.getRotation())) * shooter.getRadius();
+//        double shooterFrontY = shooter.getY() + Math.sin(Math.toRadians(shooter.getRotation()))* shooter.getRadius();
+        double distanceFront = 20; // Adjust this value to ensure the bullet spawns far enough to avoid self-collision
+        double shooterFrontX = shooter.getX() + Math.cos(Math.toRadians(shooter.getRotation())) * (shooter.getRadius() + distanceFront);
+        double shooterFrontY = shooter.getY() + Math.sin(Math.toRadians(shooter.getRotation())) * (shooter.getRadius() + distanceFront);
+
+        bullet.setX(shooterFrontX);
+        bullet.setY(shooterFrontY);
         bullet.setRotation(shooter.getRotation());
 
         bullet.setDmg(1);

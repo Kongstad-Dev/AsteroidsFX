@@ -32,7 +32,7 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
             if (asteroid.getX() > gameData.getDisplayWidth() || asteroid.getX() < 0) {world.removeEntity(asteroid);}
 
 
-            if (asteroid.getHP() == 5)
+            if (asteroid.getHP() == 6)
             {
                 createAsteroid(gameData, world, AsteroidSize.MEDIUM);
                 createAsteroid(gameData, world, AsteroidSize.MEDIUM);
@@ -51,6 +51,7 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
             // Add entities to the world
             createAsteroid(gameData, world, AsteroidSize.LARGE);
             asteroidsCount++;
+            System.out.println("Asteroid count: " + asteroidsCount);
         }
 
 

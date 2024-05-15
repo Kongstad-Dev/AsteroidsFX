@@ -19,6 +19,9 @@ public class EnemyControlSystem implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
 
+        int fireThreshhold = 100;
+        int maxBullets = 5;
+
         Random random = new Random();
         int randomInt;
         int randomInt2;
@@ -26,6 +29,19 @@ public class EnemyControlSystem implements IEntityProcessingService {
         for (Entity enemy : world.getEntities(Enemy.class)) {
 
 //            System.out.println(enemy.getRotation());
+
+
+            // Increment frame counter
+            ((Enemy)enemy).setFrameCounter(((Enemy)enemy).getFrameCounter() + 1);
+
+            if (((Enemy)enemy).getFrameCounter() >= fireThreshhold && ((Enemy)enemy).getBulletsFired() < maxBullets) {
+                getBulletSPIs().stream().findFirst().ifPresent(
+                        spi -> {world.addEntity(spi.createBullet(enemy, gameData));}
+                );
+                // Reset frame counter and increment bullets fired
+                ((Enemy)enemy).setFrameCounter(0);
+                ((Enemy)enemy).setBulletsFired(((Enemy)enemy).getBulletsFired() + 1);
+            }
 
             randomInt = random.nextInt(2);
             randomInt2 = random.nextInt(10);
@@ -42,12 +58,12 @@ public class EnemyControlSystem implements IEntityProcessingService {
                 enemy.setX(enemy.getX() + changeX);
                 enemy.setY(enemy.getY() + changeY);
             }
-            if(randomInt2==1) {
-                getBulletSPIs().stream().findFirst().ifPresent(
-                        spi -> {world.addEntity(spi.createBullet(enemy, gameData));}
-                );
-
-            }
+//            if(randomInt2==1) {
+//                getBulletSPIs().stream().findFirst().ifPresent(
+//                        spi -> {world.addEntity(spi.createBullet(enemy, gameData));}
+//                );
+//
+//            }
 
             if (enemy.getX() < 0) {
                 enemy.setX(1);
@@ -72,13 +88,12 @@ public class EnemyControlSystem implements IEntityProcessingService {
                 enemy.setRotation(enemy.getRotation()+180);
             }
 
-            if (world.getEntities(Enemy.class).size() <= 2)
-            {
-                createEnemyShip(gameData, world);
-            }
-            else {
-                System.out.println("Enemy ship already exists");
-            }
+
+        }
+
+        if (world.getEntities(Enemy.class).size() < 2)
+        {
+            createEnemyShip(gameData, world);
         }
 
     }
