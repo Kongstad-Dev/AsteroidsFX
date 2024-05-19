@@ -6,6 +6,7 @@ import dk.sdu.mmmi.cbse.common.data.World;
 public interface IEntityProcessingService {
     void process(GameData gameData, World world);
 }
+
 /**
  *
  *
@@ -21,3 +22,9 @@ public interface IEntityProcessingService {
 
     post-condition is state(rendering?) and continous placement in the world
      */
+
+
+
+
+
+
