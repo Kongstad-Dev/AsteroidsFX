@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.cbse.playersystem;
+package dk.sdu.mmmi.cbse;
 
 import dk.sdu.mmmi.cbse.common.bullet.Bullet;
 import dk.sdu.mmmi.cbse.common.bullet.BulletSPI;
@@ -19,7 +19,7 @@ public class PlayerControlSystem implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
             
-        for (Entity player : world.getEntities(Player.class)) {
+        for (Entity player : world.getEntities(HelloWorld.class)) {
             if (gameData.getKeys().isDown(GameKeys.A)) {
                 player.setRotation(player.getRotation() - 5);                
             }
