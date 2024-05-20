@@ -7,21 +7,15 @@ import java.util.UUID;
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
-    
     private double[] polygonCoordinates;
     private double x;
     private double y;
     private double rotation;
     private float radius;
-
     private double width;
-
     private double height;
-
     private int HP;
-
     private int dmg;
-
 
     public String getID() {
         return ID.toString();
