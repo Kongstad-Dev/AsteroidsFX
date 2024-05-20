@@ -4,7 +4,6 @@ import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.playersystem.Player;
 
 public class CollisionDetector implements IPostEntityProcessingService {
 
@@ -20,18 +19,6 @@ public class CollisionDetector implements IPostEntityProcessingService {
                         entity1.setHP(entity1.getHP() - entity2.getDmg());
                         entity2.setHP(entity2.getHP() - entity1.getDmg());
                     System.out.println("Entity 1 is:" + entity1.getClass());
-                    System.out.println("Entity 2 is:" +entity2.getClass());
-                    System.out.println("Asteroids : " + entity1.getWidth() + " Bullet : " + entity2.getWidth());
-
-                    System.out.println("Entity 1 - dmg: " + entity1.getDmg());
-                    System.out.println("Entity 1 - hp: " +entity1.getHP());
-
-
-                    System.out.println("Entity 2 - dmg: " +entity2.getDmg());
-                    System.out.println("Entity 2 - hp: " +entity2.getHP());
-
-
-
                     if (entity1.getHP() < 1) {
                         world.removeEntity(entity1);
                     }

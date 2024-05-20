@@ -16,8 +16,6 @@ public class AsteroidsControlSystem implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
 
-
-
         // Chance to spawn 1
         int randomInt = random.nextInt(50);
 
