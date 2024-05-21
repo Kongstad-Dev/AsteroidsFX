@@ -46,7 +46,6 @@ class AsteroidsControlSystemTest {
         assertEquals(1, world.getEntities(Asteroids.class).size());
         Entity asteroid = world.getEntities(Asteroids.class).iterator().next();
         assertNotNull(asteroid.getPolygonCoordinates());
-        // Further assertions can be made on the coordinates based on the expected shape
     }
 
     @Test
